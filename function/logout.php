@@ -7,10 +7,12 @@
         }
     }
     delete('_id');
-    delete('profileImageDir');
-    delete('nickname');
     delete('userId');
+    delete('nickname');
+    delete('email');
     delete('password');
+    delete('profileImageDir');
+    delete('birthday');
     delete('type');
     header("location:../pages/signIn.php");
 ?>

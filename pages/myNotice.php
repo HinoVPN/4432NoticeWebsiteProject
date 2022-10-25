@@ -32,11 +32,10 @@
                                         $_id = $notice["_id"];
                                         $link = $notice["imageDir"];
                                         echo "
-
-                                            <div class='card mb-3 ' style='max-width: 540px;'>
-                                                <div class='row g-0' style='height: 240px;'>
-                                                    <div class='col-md-4' style='padding-left: 0;'>
-                                                    <img style='height:100%; object-fit: cover;' src=$link class='img-fluid rounded-start' alt='...'>
+                                            <div class='card mb-3 ' style='max-width: 540px; height:fit-content;'>
+                                                <div class='row g-0'>
+                                                    <div class='col-md-4' style='padding: 0;'>
+                                                    <img style='width:100%; height:250px; object-fit: cover;' src=$link class='img-fluid rounded-start' alt='...'>
                                                     </div>
                                                     <div class='col-md-8'>
                                                     <div class='card-body' style='height: 100%;>
