@@ -21,7 +21,7 @@
         // $birthday = $_POST['birthday'];
         // $profileImageDir = '';
         $dateTime = new DateTime();
-        $createdDate = $dateTime -> format('m/d/Y g;i A');
+        $createdDate = $dateTime -> format('m/d/Y g:i A');
         $type = 'user';
         
         // print_r($result);

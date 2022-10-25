@@ -44,6 +44,15 @@
                 <?php echo $createNotice?>
             </a>
         </li>
+        <?php
+            if($_COOKIE['type'] == 'admin'){
+                echo "
+                <li>
+                    <a href='/project/admin'><button type='button' class='btn btn-primary'>Dashboard</button></a>
+                </li>
+                ";
+            }
+        ?>
       </ul>
       <div class="dropdown text-end">
             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
