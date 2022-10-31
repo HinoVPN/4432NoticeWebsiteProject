@@ -74,7 +74,12 @@
                 foreach($allLost as $lost){
                     echo '<tr>';
                     foreach($lost as $key => $val) {
-                        echo "<td>$val</td>";
+                        if($key == "imageDir"){
+                            echo "<td><img src=$val /></td>";
+                        }else{
+                            echo "<td>$val</td>";
+                        }
+                        
                     }
                     echo '</tr>';
                 }
@@ -106,7 +111,11 @@
                 foreach($allFound as $found){
                     echo '<tr>';
                     foreach($found as $key => $val) {
-                        echo "<td>$val</td>";
+                        if($key == "imageDir"){
+                            echo "<td><img src=$val /></td>";
+                        }else{
+                            echo "<td>$val</td>";
+                        }
                     }
                     echo '</tr>';
                 }
