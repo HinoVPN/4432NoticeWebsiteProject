@@ -31,28 +31,27 @@
                                         $venue = $notice["venue"];
                                         $_id = $notice["_id"];
                                         $link = $notice["imageDir"];
+                                        $color = $type == 'found'? 'badge-success' : 'badge-danger';
                                         echo "
                                             <div class='card mb-3 ' style='max-width: 540px; height:fit-content;'>
                                                 <div class='row g-0'>
                                                     <div class='col-md-4' style='padding: 0;'>
-                                                    <img style='width:100%; height:250px; object-fit: cover;' src=$link class='img-fluid rounded-start' alt='...'>
+                                                        <img style='width:100%; height:250px; object-fit: cover;' src=$link class='img-fluid rounded-start' alt='...'>
                                                     </div>
                                                     <div class='col-md-8'>
-                                                    <div class='card-body' style='height: 100%;>
-                                                        <h5 class='card-title'>$venue</h5>
-                                                        <p class='card-text JQellipsis'>$description</p>
-                                                        <p class='card-text'><small class='text-muted'>$lostDate</small></p>
-                                                        <a href='notice.php?mode=view&_id=$_id' class='btn btn-primary stretched-link'>Learn more...</a>
-                                                    </div>
+                                                        <div class='card-body' style='height: 100%;>
+                                                            <h5 class='card-title'>$venue</h5>
+                                                            <p class='card-text JQellipsis'>$description</p>
+                                                            <p class='card-text'><small class='text-muted'>$lostDate</small></p>
+                                                            <a href='notice.php?mode=view&_id=$_id' class='btn btn-primary stretched-link'>Learn more...</a>
+                                                            <span class='badge $color'>$type</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         ";
                                     }
                                 ?>
-
-                                
-
                             </div>
                         </div>
                     </div>

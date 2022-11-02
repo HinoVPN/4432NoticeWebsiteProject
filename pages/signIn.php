@@ -1,5 +1,4 @@
 <?php
-    // include '../function/db_connection.php';
     include $_SERVER['DOCUMENT_ROOT'] .'/project/function/login.php';
 
     if(isset($_COOKIE['_id'])){
@@ -31,10 +30,8 @@
             <div class="loginRight">
                 <div class="card">
                     <div class="card-body">
-                        <!-- <h3 class="card-title">Sign In</h5> -->
                         <form action="" method="post">
                             <div class="mb-3">
-                                <!-- <label for="inputUserId" class="form-label fw-bold">User ID</label> -->
                                 <input type="text" 
                                 name="userId" 
                                 class="form-control form-control-lg" 
@@ -43,7 +40,6 @@
                                 >
                             </div>
                             <div class="mb-3">
-                                <!-- <label for="inputPassword" class="form-label fw-bold">Password</label> -->
                                 <input 
                                 type="password" 
                                 name="password" 

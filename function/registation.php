@@ -14,19 +14,9 @@
     $_id = $userId = $nickname = $email = $password = $birthday = $profileImageDir = $createdDate = $type = '';
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_id = uniqid();
-        // $userId = $_POST['userId'];
-        // $nickname = $_POST['nickname'];
-        // $email = $_POST['email'];
-        // $password = $_POST['password'];
-        // $birthday = $_POST['birthday'];
-        // $profileImageDir = '';
         $dateTime = new DateTime();
         $createdDate = $dateTime -> format('m/d/Y g:i A');
         $type = 'user';
-        
-        // print_r($result);
-        // echo mysqli_num_rows($result);
-
         if (empty($_POST["userId"])) {
             $userIdErr = "User ID is required";
         } else {
@@ -52,9 +42,6 @@
         $result = mysqli_query($connection, $s);
 
         if(mysqli_num_rows($result) > 0){
-            // while($i = mysqli_fetch_assoc($result)) {
-            //     print_r($i)
-            // }
             $userIdErr =  'Usename Already Taken';
         }else{
             if (empty($_POST["nickname"])) {
@@ -95,11 +82,7 @@
 
                 //Array of Allowed file type
                 $allowedExt = array("jpg","jpeg","png","pdf");
-
-                // $imgEx = pathinfo($_FILES["profileImage"]["name"], PATHINFO_EXTENSION);
-                // $imgExLc = strtolower($imgEx);
-                // $allowedExs = array("jpg", "jpeg", "png");
-
+                
                 //Checking, Is file extentation is in allowed extentation array
                 if(in_array($fileActualExt, $allowedExt)){
                     //Checking, Is there any file error

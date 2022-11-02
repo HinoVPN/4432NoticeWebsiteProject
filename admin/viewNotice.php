@@ -75,7 +75,7 @@
                     echo '<tr>';
                     foreach($lost as $key => $val) {
                         if($key == "imageDir"){
-                            echo "<td><img src=$val /></td>";
+                            echo "<td><img style='max-width: 80px;' src=$val /></td>";
                         }else{
                             echo "<td>$val</td>";
                         }
@@ -112,7 +112,7 @@
                     echo '<tr>';
                     foreach($found as $key => $val) {
                         if($key == "imageDir"){
-                            echo "<td><img src=$val /></td>";
+                            echo "<td><img style='max-width: 80px;' src=$val /></td>";
                         }else{
                             echo "<td>$val</td>";
                         }

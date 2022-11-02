@@ -31,6 +31,7 @@
                                         $venue = $notice["venue"];
                                         $_id = $notice["_id"];
                                         $link = $notice["imageDir"];
+                                        $color = $type == 'found'? 'badge-success' : 'badge-danger';
                                         echo "
                                             <div class='card mb-3 ' style='max-width: 540px; height:fit-content;'>
                                                 <div class='row g-0'>
@@ -43,6 +44,7 @@
                                                         <p class='card-text JQellipsis'>$description</p>
                                                         <p class='card-text'><small class='text-muted'>$lostDate</small></p>
                                                         <a href='notice.php?mode=view&_id=$_id' class='btn btn-primary stretched-link'>Learn more...</a>
+                                                        <span class='badge $color'>$type</span>
                                                     </div>
                                                     </div>
                                                 </div>

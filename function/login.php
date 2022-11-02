@@ -1,25 +1,12 @@
 <?php
-    // session_start();
-    // header("location:login.php");
     include 'db_connection.php';
     $errMsg = '';
-    
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $connection = OpenCon();
-
-        // $username = $_POST['username'];
         $userId = $_POST['userId'];
         $password = $_POST['password'];
-        // echo $userId;
-        // echo $password;
-    
-        $s = "SELECT * FROM users WHERE userId = '$userId' && password = '$password'";
-    
+        $s = "SELECT * FROM  users WHERE BINARY userId = '$userId' && BINARY password = '$password'";
         $result = mysqli_query($connection, $s);
-        // print_r($result);
-        // echo mysqli_num_rows($result);
-    
-        
         if(mysqli_num_rows($result) == 1){
             while($i = mysqli_fetch_assoc($result)) {
                 setcookie("_id", $i["_id"], time() + (86400 * 30), "/");
@@ -38,7 +25,6 @@
             }
         }else{
             $errMsg = 'User ID or password not correct!';
-            // header('location:../pages/login.php');
         }
     }
 ?>

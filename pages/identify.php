@@ -15,7 +15,7 @@
 <body>
     <div class="loginSection section">
         <div class="loginContainer container">
-            <div class="loginRight">
+            <div class="loginRight" style='justify-content: center;'>
                 <div class="card">
                     <div class="card-body">
                         <!-- <h3 class="card-title">Sign In</h5> -->

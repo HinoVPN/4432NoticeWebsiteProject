@@ -14,21 +14,8 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_id = uniqid();
         $userId = $_COOKIE["_id"];
-        // $userId = $_POST['userId'];
-        // $nickname = $_POST['nickname'];
-        // $email = $_POST['email'];
-        // $password = $_POST['password'];
-        // $birthday = $_POST['birthday'];
-        // $profileImageDir = '';
         $dateTime = time();
-        // $createdDate = $dateTime -> format('m/d/Y g;i A');
-        
         $createdDate = date('Y-m-d H:i:s', time());
-        // $type = 'user';
-        
-        // print_r($result);
-        // echo mysqli_num_rows($result);
-
         if (empty($_POST["lostDate"])) {
             $lostDateErr = "Lost Date is required";
         }else{
@@ -58,8 +45,6 @@
         }else{
             $description = $_POST["description"];
         }
-
-
         // print_r($_FILES["profileImage"]);
         if(isset($_FILES["noticeImg"])){
             //Taking the files from input
@@ -74,18 +59,11 @@
             $fileError = $_FILES["noticeImg"]['error'];
             //Getting the file type of the uploaded file
             $fileType = $_FILES["noticeImg"]['type'];
-
             //Getting the file ext
             $fileExt = explode('.',$fileName);
             $fileActualExt = strtolower(end($fileExt));
-
             //Array of Allowed file type
             $allowedExt = array("jpg","jpeg","png","pdf");
-
-            // $imgEx = pathinfo($_FILES["profileImage"]["name"], PATHINFO_EXTENSION);
-            // $imgExLc = strtolower($imgEx);
-            // $allowedExs = array("jpg", "jpeg", "png");
-
             //Checking, Is file extentation is in allowed extentation array
             if(in_array($fileActualExt, $allowedExt)){
                 //Checking, Is there any file error
@@ -148,32 +126,7 @@
                     '$noticeImgDir'
                 )";
                 $final = mysqli_query($connection, $req);
-                print_r($final);
-                // print($_id);
-                // print($userId);
-                // print($createdDate);
-                // print($type);
-                // print($lostDate);
-                // print($venue);
-                // print($contact);
-                // print($description);
-                // print($noticeImgDir);
-                // echo "Success!";
                 header('location:../pages/notices.php');
         }
-
-        // $s = "SELECT * FROM users WHERE userId = '$userId' or email = '$email'";
-
-        // $result = mysqli_query($connection, $s);
-
-        // if(mysqli_num_rows($result) > 0){
-        //     // while($i = mysqli_fetch_assoc($result)) {
-        //     //     print_r($i)
-        //     // }
-        //     $userIdErr =  'Usename Already Taken';
-        // }else{
-            
-
-        // }
     }
 ?>

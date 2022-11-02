@@ -28,19 +28,27 @@
     </div>
     <div class="resultTable container mt-3">
             <h2 id="title"></h2>
-            <table class="table">
-                <thead>
+            <table id='userTable' class="table">
+                <thead id='userThead'>
                 </thead>
-                <tbody>
+                <tbody id='userTbody'>
+                </tbody>
+            </table>
+            <h2 id="title2"></h2>
+            <table id='foundTable' class="table">
+                <thead id='foundThead'>
+                </thead>
+                <tbody id='foundTbody'>
+                </tbody>
+            </table>
+            <h2 id="title3"></h2>
+            <table id='lostTable' class="table">
+                <thead id='lostThead'>
+                </thead>
+                <tbody id='lostTbody'>
                 </tbody>
             </table>
         </div>
-
-
-    
-    
-    
-
 </body>
 <script>
     function showResult(str) {
@@ -55,14 +63,14 @@
             success: function(data){
                 console.log(data);
                 $('#title').empty();
-                $('thead').empty();
-                $('tbody').empty();
+                $('#userThead').empty();
+                $('#userTbody').empty();
                 $('#title').append('Result')
                 let record = data[0]
                 for(let key in record){
                         let newHead = document.createElement( "th" )
                         newHead.innerHTML = key
-                        $('thead').append(newHead)
+                        $('#userThead').append(newHead)
                 }
                 data.forEach(record => {
                     let newRow = document.createElement( "tr" )
@@ -72,16 +80,79 @@
                         newRow.appendChild(newCell)
                         // newRow.innerHTML += newCell
                     }
-                    $('tbody').append(newRow)
+                    $('#userTbody').append(newRow)
                 });
+                console.log(record._id)
+                showUserNotice(record._id)
             },
             error: function(error){
                 console.log("Error:");
                 console.log(error);
-                $('thead').empty();
-                $('tbody').empty();
+                $('#userThead').empty();
+                $('#userTbody').empty();
                 $('#title').empty();
                 $('#title').append('No Record Found!');
+            }
+        });
+    }
+
+    function showUserNotice(_id){
+        $.ajax({
+            url: "http://" + window.location.host + "/project/function/serachAllUserNtoice.php",
+            type: "POST",
+            dataType: "json",
+            data: {"_id": _id},
+            success: function(data){
+                console.log(data);
+                $('#foundHead').empty();
+                $('#lostHead').empty();
+                $('#foundbody').empty();
+                $('#lostTbody').empty();
+                $('#title2').append('Found Notice')
+                $('#title3').append('Lost Notice')
+                let record = data[0]
+                for(let key in record){
+                        let newHead = document.createElement( "th" )
+                        newHead.innerHTML = key
+                        $('#lostTHead').append(newHead)
+                        $('#foundTHead').append(newHead)
+                }
+                data.forEach(record => {
+                    let newRow = document.createElement( "tr" )
+                    for(let key in record){
+                        if(key == 'imageDir'){
+                            let newImg = document.createElement( "img" )
+                            newImg.src = record[key]
+                            newImg.style.maxWidth = "80px"
+                            let newCell = document.createElement( "td" )
+                            newCell.appendChild(newImg)
+                            newRow.appendChild(newCell)
+                        }else{
+                            let newCell = document.createElement( "td" )
+                            newCell.innerHTML = record[key]
+                            newRow.appendChild(newCell)
+                        }
+                        
+                        // newRow.innerHTML += newCell
+                    }
+                    if(record.type == 'lost'){
+                        $('#lostTbody').append(newRow)
+                    }else{
+                        $('#foundTbody').append(newRow)
+                    }
+                    
+                });
+
+            },
+            error: function(error){
+                console.log("Error:");
+                console.log(error);
+                $('#title2').empty();
+                $('#title3').empty();
+                $('#foundHead').empty();
+                $('#lostHead').empty();
+                $('#foundbody').empty();
+                $('#lostTbody').empty();
             }
         });
     }

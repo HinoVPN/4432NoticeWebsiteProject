@@ -22,9 +22,6 @@
         $formInfo[1][4] = $nicknameErr;
         $formInfo[2][4] = $emailErr;
         $formInfo[3][4] = $passwordErr;
-
-        // $formInfo[4][5] = $birthdayErr;
-        // $formInfo[5][5] = $profileImageDirErr;
     }
 ?>
 

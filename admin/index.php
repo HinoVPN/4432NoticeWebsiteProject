@@ -3,7 +3,7 @@
     include $_SERVER['DOCUMENT_ROOT'] .'/project/function/db_connection.php';
     $connection = OpenCon();
 
-    $s = "SELECT users.userId as 'User ID', users.nickname as 'Nickname', users.email as 'Email', users.password as 'Password', users.birthday as 'Birthday', users.createdDate as 'CreatedDate', users.type as 'Type', COUNT(comments._id) as 'No. of Comments', COUNT(notices._id) as 'No. of Notices' FROM users LEFT JOIN ( notices LEFT JOIN ( comments ) on comments.notice_id = notices._id ) on users._id = notices.userId GROUP BY users._id;";
+    $s = "SELECT users._id as '_id', users.userId as 'User ID', users.nickname as 'Nickname', users.email as 'Email', users.password as 'Password', users.birthday as 'Birthday', users.createdDate as 'CreatedDate', users.type as 'Type', COUNT(comments._id) as 'No. of Comments', COUNT(notices._id) as 'No. of Notices' FROM users LEFT JOIN ( notices LEFT JOIN ( comments ) on comments.notice_id = notices._id ) on users._id = notices.userId GROUP BY users._id;";
 
     $result = mysqli_query($connection, $s);
     $fieldinfo = mysqli_fetch_fields($result);
