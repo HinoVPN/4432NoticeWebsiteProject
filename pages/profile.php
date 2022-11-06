@@ -4,10 +4,21 @@
     $userId = $_COOKIE["userId"];
     $nickName = $_COOKIE["nickname"];
     $email = $_COOKIE["email"];
+
     $password = $_COOKIE["password"];
+
+    $ciphering = "AES-128-CTR";
+    $iv_length = openssl_cipher_iv_length($ciphering);
+    $options = 0;
+    $decryption_iv = "1234567891011121";
+    $decryption_key = "hino";
+
+    $encryptedPassword = openssl_decrypt($password, $ciphering, $decryption_key, $options, $decryption_iv);
+
     $profileImageDir = $_COOKIE["profileImageDir"];
     $birthday = $_COOKIE["birthday"];
     include $_SERVER['DOCUMENT_ROOT'] . '/project/function/updateProfile.php';
+    
 ?>
 
 <?php
@@ -15,7 +26,7 @@
         array("User ID","text","userId","Please enter you user ID",'',$userId),
         array("Nickname","text","nickname","Please enter you nickname",'',$nickName),
         array("Email","email","email","Please enter you email,",'',$email),
-        array("Password","password","password","Please enter you password",'',$password),
+        array("Password","password","password","Please enter you password",'',$encryptedPassword),
     );
 
     if(

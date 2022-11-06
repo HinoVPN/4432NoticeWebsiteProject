@@ -17,7 +17,7 @@
 <?php
     $user_id = $_COOKIE['_id'];
     $connection = OpenCon();
-    $q2 = "SELECT * FROM notices WHERE type = 'lost' AND userId = '$user_id'";
+    $q2 = "SELECT * FROM notices WHERE userId = '$user_id'";
 
     $result = mysqli_query($connection, $q2);
     $myNotices = array();

@@ -17,6 +17,7 @@
         $dateTime = new DateTime();
         $createdDate = $dateTime -> format('m/d/Y g:i A');
         $type = 'user';
+
         if (empty($_POST["userId"])) {
             $userIdErr = "User ID is required";
         } else {
@@ -54,6 +55,14 @@
                 $passwordErr = "Password is required";
             } else {
                 $password = test_input($_POST["password"]);
+
+                $ciphering = "AES-128-CTR";
+                $iv_length = openssl_cipher_iv_length($ciphering);
+                $options = 0;
+                $encryption_iv = "1234567891011121";
+                $encryption_key = "hino";
+
+                $encryptedPassword = openssl_encrypt($password, $ciphering, $encryption_key, $options, $encryption_iv);
             }
 
             if (empty($_POST["birthday"])) {
@@ -81,7 +90,7 @@
                 $fileActualExt = strtolower(end($fileExt));
 
                 //Array of Allowed file type
-                $allowedExt = array("jpg","jpeg","png","pdf");
+                $allowedExt = array("jpg","jpeg","png");
                 
                 //Checking, Is file extentation is in allowed extentation array
                 if(in_array($fileActualExt, $allowedExt)){
@@ -112,6 +121,7 @@
                 $profileImageDirErr = "Profile Image is required";
             }
 
+            $userIdErr = $encryptedPassword;
             if(
                 empty($userIdErr) &&
                 empty($nicknameErr) &&
@@ -120,6 +130,18 @@
                 empty($birthdayErr) &&
                 empty($profileImageDirErr)
             ){
+
+                $_id = test_input($_id);
+                $userId = test_input($userId);
+                $nickname = test_input($nickname);
+                $email = test_input($email);
+                $encryptedPassword = test_input($encryptedPassword);
+                $profileImageDir = test_input($profileImageDir);
+                $birthday = test_input($birthday);
+                $createdDate = test_input($createdDate);
+                $type = test_input($type);
+
+
                 $req = "
                 INSERT INTO users(
                     _id,
@@ -136,7 +158,7 @@
                         '$userId',
                         '$nickname',
                         '$email',
-                        '$password',
+                        '$encryptedPassword',
                         '$profileImageDir',
                         '$birthday',
                         '$createdDate',

@@ -5,6 +5,7 @@
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
+        
         return $data;
     };
     $connection = OpenCon();
@@ -101,6 +102,17 @@
             empty($descriptionErr) &&
             empty($noticeImgErr)
         ){
+
+            $_id = test_input($_id);
+            $userId = test_input($userId);
+            $createdDate = test_input($createdDate);
+            $type = test_input($type);
+            $lostDate = test_input($lostDate);
+            $venue = test_input($venue);
+            $contact = test_input($contact);
+            $description = test_input($description);
+            $noticeImgDir = test_input($noticeImgDir);
+
             $req = "
             INSERT INTO notices(
                 _id,
